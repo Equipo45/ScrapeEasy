@@ -25,7 +25,6 @@ export async function writeData (data, urlName) {
 export async function deleteScrapeDirectory () {
   try {
     const filesAndDirectories = await fs.promises.readdir(SCRAPED_DIRECTORY_PATH)
-
     for (const fileOrDirectory of filesAndDirectories) {
       const path = `${SCRAPED_DIRECTORY_PATH}/${fileOrDirectory}`
       const stats = await fs.promises.stat(path)

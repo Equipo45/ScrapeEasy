@@ -13,7 +13,9 @@ async function main () {
     const textPath = path.join(__dirname, 'urlsToScrape.txt')
     const urlList = fs.readFileSync(textPath, 'utf8').split('\n')
     urlList.forEach(async (url) => {
-      writeData(await getResponse(url), cleanName(url))
+      const dataReponse = await getResponse(url)
+      const cleanUrl = cleanName(url)
+      await writeData(dataReponse, cleanUrl)
     })
   }
 }
