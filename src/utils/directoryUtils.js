@@ -12,10 +12,11 @@ async function createFolder (urlName) {
   }
 }
 
-export async function writeData (data, urlName) {
+export async function writeData (data, headers, urlName) {
   try {
     await createFolder(urlName)
     await fs.promises.writeFile('./scrapedPages/' + `${urlName}/data.html`, data, { flag: 'a+' })
+    await fs.promises.writeFile('./scrapedPages/' + `${urlName}/headers.json`, headers, { flag: 'a+' })
     console.log(chalk.blueBright(urlName + ' data written successfully'))
   } catch (err) {
     console.error(chalk.redBright('Some error ocurr while writting data on folder ' + urlName + ' ' + err))
