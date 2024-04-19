@@ -16,9 +16,9 @@ export function getAllLinksHtml (htmlData, baseUrl) {
   const $ = cheerio.load(htmlData)
   const anchors = $('a')
   const hrefLinks = []
-  for (const anchor of anchors) {
-    hrefLinks.push(anchor.attr('href'))
-  }
+  anchors.each((_, element) => {
+    hrefLinks.push($(element).attr('href'))
+  })
   return cleanedHtmlLinks(hrefLinks, baseUrl)
 }
 
